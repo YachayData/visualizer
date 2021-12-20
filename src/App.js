@@ -1,22 +1,18 @@
 import logo from "./logo.svg";
 import "./App.css";
+import { Container, Row, Col } from "reactstrap";
+import ResponsiveRadar from "./components/radar";
+import ResponsiveBar from "./components/bar";
+import ResponsiveSwarmPlot from "./components/swarmPlot";
+import dataBar from "./data/dataBar";
+import dataRadar from "./data/dataRadar";
+import dataSwarmPlot from "./data/dataSwarmPlot";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload!.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Gráfico de prueba</h1>
+      <ResponsiveRadar data={dataRadar} />
     </div>
   );
 }
