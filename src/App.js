@@ -19,6 +19,7 @@ import dataGlobalMap from "./data/dataGlobalMap";
 import dataTreeMap from "./data/dataTreeMap";
 import dataPie from "./data/dataPie";
 import dataStream from "./data/dataStream";
+import dataSport from "./data/dataSport";
 
 function App() {
   const barKeys = ["hot dog", "burger", "sandwich", "kebab", "fries", "donut"];
@@ -29,6 +30,7 @@ function App() {
   return (
     <div className="App">
       <h1>Gráficos de prueba</h1>
+      <ResponsiveRadar data={dataSport} keys={["name"]} indexBy={"item"} />
       <ResponsiveBar
         data={dataBar}
         keys={barKeys}
@@ -48,7 +50,6 @@ function App() {
         axisXLegend={"transportation"}
         axisYLegend={"count"}
       />
-      <ResponsiveRadar data={dataRadar} keys={radarKeys} />
       <ResponsiveSwarmPlot
         data={dataSwarmPlot}
         groups={swarmPlotGroups}

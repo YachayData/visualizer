@@ -1,14 +1,15 @@
 import { ResponsiveRadar } from "@nivo/radar";
 
-const MyResponsiveRadar = ({ data, keys }) => (
+const MyResponsiveRadar = ({ data, keys, indexBy }) => (
   <ResponsiveRadar
     data={data}
     keys={keys}
-    indexBy="taste"
+    indexBy={indexBy}
     valueFormat=">-.2f"
     margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
     borderColor={{ from: "color" }}
-    gridLabelOffset={36}
+    gridLabelOffset={26}
+    gridLevels={10}
     dotSize={10}
     dotColor={{ theme: "background" }}
     dotBorderWidth={2}

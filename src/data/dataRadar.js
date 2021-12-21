@@ -14,8 +14,8 @@ const dataRadar = [
   {
     taste: "heavy",
     chardonay: 33,
-    carmenere: 89,
-    syrah: 68,
+    carmenere: 0,
+    syrah: 0,
   },
   {
     taste: "strong",
