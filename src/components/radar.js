@@ -1,9 +1,9 @@
 import { ResponsiveRadar } from "@nivo/radar";
 
-const MyResponsiveRadar = ({ data }) => (
+const MyResponsiveRadar = ({ data, keys }) => (
   <ResponsiveRadar
     data={data}
-    keys={["chardonay", "carmenere", "syrah"]}
+    keys={keys}
     indexBy="taste"
     valueFormat=">-.2f"
     margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
@@ -19,7 +19,7 @@ const MyResponsiveRadar = ({ data }) => (
       {
         anchor: "top-left",
         direction: "column",
-        translateX: -50,
+        translateX: 150,
         translateY: -40,
         itemWidth: 80,
         itemHeight: 20,

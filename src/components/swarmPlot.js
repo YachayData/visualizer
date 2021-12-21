@@ -1,14 +1,22 @@
 import { ResponsiveSwarmPlot } from "@nivo/swarmplot";
 
-const MyResponsiveSwarmPlot = ({ data }) => (
+const MyResponsiveSwarmPlot = ({
+  data,
+  groups,
+  id,
+  value,
+  size,
+  axisXLegend,
+  axisYLegend,
+}) => (
   <ResponsiveSwarmPlot
     data={data}
-    groups={["group A", "group B", "group C"]}
-    identity="id"
-    value="price"
+    groups={groups}
+    identity={id}
+    value={value}
     valueFormat="$.2f"
     valueScale={{ type: "linear", min: 0, max: 500, reverse: false }}
-    size={{ key: "volume", values: [4, 20], sizes: [6, 20] }}
+    size={{ key: size, values: [4, 20], sizes: [6, 20] }}
     forceStrength={4}
     simulationIterations={100}
     borderColor={{
@@ -24,7 +32,7 @@ const MyResponsiveSwarmPlot = ({ data }) => (
       tickSize: 10,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "group if vertical, price if horizontal",
+      legend: "",
       legendPosition: "middle",
       legendOffset: -46,
     }}
@@ -33,7 +41,7 @@ const MyResponsiveSwarmPlot = ({ data }) => (
       tickSize: 10,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "price if vertical, group if horizontal",
+      legend: "",
       legendPosition: "middle",
       legendOffset: 76,
     }}
@@ -42,7 +50,7 @@ const MyResponsiveSwarmPlot = ({ data }) => (
       tickSize: 10,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "group if vertical, price if horizontal",
+      legend: axisXLegend,
       legendPosition: "middle",
       legendOffset: 46,
     }}
@@ -51,7 +59,7 @@ const MyResponsiveSwarmPlot = ({ data }) => (
       tickSize: 10,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "price if vertical, group if horizontal",
+      legend: axisYLegend,
       legendPosition: "middle",
       legendOffset: -76,
     }}

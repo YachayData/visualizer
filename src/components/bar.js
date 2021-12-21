@@ -1,49 +1,15 @@
 import { ResponsiveBar } from "@nivo/bar";
 
-const MyResponsiveBar = ({ data }) => (
+const MyResponsiveBar = ({ data, keys, indexBy, axisXLegend, axisYLegend }) => (
   <ResponsiveBar
     data={data}
-    keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
-    indexBy="country"
+    keys={keys}
+    indexBy={indexBy}
     margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
     padding={0.3}
     valueScale={{ type: "linear" }}
     indexScale={{ type: "band", round: true }}
     colors={{ scheme: "nivo" }}
-    defs={[
-      {
-        id: "dots",
-        type: "patternDots",
-        background: "inherit",
-        color: "#38bcb2",
-        size: 4,
-        padding: 1,
-        stagger: true,
-      },
-      {
-        id: "lines",
-        type: "patternLines",
-        background: "inherit",
-        color: "#eed312",
-        rotation: -45,
-        lineWidth: 6,
-        spacing: 10,
-      },
-    ]}
-    fill={[
-      {
-        match: {
-          id: "fries",
-        },
-        id: "dots",
-      },
-      {
-        match: {
-          id: "sandwich",
-        },
-        id: "lines",
-      },
-    ]}
     borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
     axisTop={null}
     axisRight={null}
@@ -51,7 +17,7 @@ const MyResponsiveBar = ({ data }) => (
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "country",
+      legend: axisXLegend,
       legendPosition: "middle",
       legendOffset: 32,
     }}
@@ -59,7 +25,7 @@ const MyResponsiveBar = ({ data }) => (
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "food",
+      legend: axisYLegend,
       legendPosition: "middle",
       legendOffset: -40,
     }}
@@ -91,10 +57,6 @@ const MyResponsiveBar = ({ data }) => (
       },
     ]}
     role="application"
-    ariaLabel="Nivo bar chart demo"
-    barAriaLabel={function (e) {
-      return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
-    }}
   />
 );
 
