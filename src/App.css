@@ -1,4 +1,12 @@
 .App {
   text-align: center;
-  height: 80vh;
+}
+
+.app-container {
+  display: flex;
+}
+
+.pie-wrap {
+  width: 100%;
+  height: 100%;
 }

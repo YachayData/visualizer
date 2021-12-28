@@ -1,10 +1,17 @@
-import { ResponsiveLine } from "@nivo/line";
+import { Line } from "@nivo/line";
 
-const MyResponsiveLine = ({ data, axisXLegend, axisYLegend }) => (
-  <ResponsiveLine
+const MyLine = ({ data, axisXLegend, axisYLegend, screenWidth }) => (
+  <Line
     data={data}
-    margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-    xScale={{ type: "point" }}
+    height={screenWidth > 600 ? 300 : 300}
+    width={screenWidth > 600 ? 600 : 400}
+    margin={{ top: 30, right: 110, bottom: 60, left: 60 }}
+    xScale={{
+      type: "time",
+      format: "%Y-%m-%d",
+      precision: "day",
+      useUTC: false,
+    }}
     yScale={{
       type: "linear",
       min: "auto",
@@ -12,43 +19,49 @@ const MyResponsiveLine = ({ data, axisXLegend, axisYLegend }) => (
       stacked: true,
       reverse: false,
     }}
-    yFormat=" >-.2f"
+    yFormat=",d"
+    xFormat={"time:%Y-%m-%d"}
     axisTop={null}
     axisRight={null}
     axisBottom={{
       orient: "bottom",
-      tickSize: 5,
-      tickPadding: 5,
-      tickRotation: 0,
+      format: "%b %Y",
+      tickSize: 3,
+      tickPadding: 4,
+      tickValues: "every 3 months",
+      tickRotation: screenWidth > 600 ? 0 : -50,
       legend: axisXLegend,
-      legendOffset: 36,
+      legendOffset: 35,
       legendPosition: "middle",
     }}
     axisLeft={{
       orient: "left",
-      tickSize: 5,
+      tickSize: 3,
       tickPadding: 5,
       tickRotation: 0,
       legend: axisYLegend,
-      legendOffset: -40,
+      legendOffset: -50,
       legendPosition: "middle",
     }}
-    pointSize={10}
+    enableGridX={false}
+    pointSize={5}
+    enablePoints={false}
     pointColor={{ theme: "background" }}
-    pointBorderWidth={2}
+    pointBorderWidth={1}
     pointBorderColor={{ from: "serieColor" }}
-    pointLabelYOffset={-12}
+    pointLabelYOffset={0}
     useMesh={true}
+    curve={"monotoneX"}
     legends={[
       {
-        anchor: "bottom-right",
+        anchor: "top-left",
         direction: "column",
         justify: false,
-        translateX: 100,
+        translateX: 0,
         translateY: 0,
-        itemsSpacing: 0,
+        itemsSpacing: -2,
         itemDirection: "left-to-right",
-        itemWidth: 80,
+        itemWidth: 70,
         itemHeight: 20,
         itemOpacity: 0.75,
         symbolSize: 12,
@@ -68,4 +81,4 @@ const MyResponsiveLine = ({ data, axisXLegend, axisYLegend }) => (
   />
 );
 
-export default MyResponsiveLine;
+export default MyLine;
