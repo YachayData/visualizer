@@ -1,11 +1,11 @@
 import { Line } from "@nivo/line";
 
-const MyLine = ({ data, axisXLegend, axisYLegend, screenWidth }) => (
+const MyLine = ({ data, screenWidth }) => (
   <Line
     data={data}
-    height={screenWidth > 600 ? 300 : 300}
-    width={screenWidth > 600 ? 600 : 400}
-    margin={{ top: 30, right: 110, bottom: 60, left: 60 }}
+    height={screenWidth > 600 ? 300 : 250}
+    width={screenWidth > 600 ? 600 : 450}
+    margin={{ top: 30, right: 85, bottom: 65, left: 95 }}
     xScale={{
       type: "time",
       format: "%Y-%m-%d",
@@ -16,8 +16,6 @@ const MyLine = ({ data, axisXLegend, axisYLegend, screenWidth }) => (
       type: "linear",
       min: "auto",
       max: "auto",
-      stacked: true,
-      reverse: false,
     }}
     yFormat=",d"
     xFormat={"time:%Y-%m-%d"}
@@ -30,18 +28,19 @@ const MyLine = ({ data, axisXLegend, axisYLegend, screenWidth }) => (
       tickPadding: 4,
       tickValues: "every 3 months",
       tickRotation: screenWidth > 600 ? 0 : -50,
-      legend: axisXLegend,
-      legendOffset: 35,
+      legend: "",
+      legendOffset: screenWidth > 600 ? 35 : 57,
       legendPosition: "middle",
     }}
     axisLeft={{
       orient: "left",
       tickSize: 3,
-      tickPadding: 5,
+      tickPadding: 4,
       tickRotation: 0,
-      legend: axisYLegend,
-      legendOffset: -50,
+      legend: "",
+      legendOffset: 0,
       legendPosition: "middle",
+      max: "auto",
     }}
     enableGridX={false}
     pointSize={5}
