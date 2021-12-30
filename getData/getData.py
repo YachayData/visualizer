@@ -7,6 +7,7 @@ import infoRegiones
 regiones = infoRegiones.regiones
 regionesID = infoRegiones.regionesID
 
+'''
 # Casos totales acumulados
 url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto3/CasosTotalesCumulativo_T.csv"
 res = requests.get(url, allow_redirects=True)
@@ -36,8 +37,7 @@ for day in accumulatedTotalCases.keys():
 
 with open(f"../src/data/casos_totales_acumulados.json", "w") as file:
     json.dump(dataTotalCases, file, indent=4)
-            
-
+    
 # Pacientes UCI 
 url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto8/UCI_T.csv"
 res = requests.get(url, allow_redirects=True)
@@ -96,26 +96,40 @@ for day in accumulatedDeceased.keys():
     dataDeceased["TOTAL"]["data"][day] = accumulatedDeceased[day]
 
 with open(f"../src/data/fallecidos_acumulados.json", "w") as file:
-    json.dump(dataDeceased, file, indent=4)
-            
+    json.dump(dataDeceased, file, indent=4)   
+
 # Tasa de incidencia 
-url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto18/TasaDeIncidencia_T.csv"
-res = requests.get(url, allow_redirects=True)
-with open("tasa_incidencia.csv","wb") as file:
+url_nacional = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto69/carga.nacional.ajustada.csv"
+res = requests.get(url_nacional, allow_redirects=True)
+with open("tasa_incidencia_nacional.csv","wb") as file:
     file.write(res.content)
 
-dfIRate = pd.read_csv("tasa_incidencia.csv")
-dataIRate = {}
+dfNationalIRate = pd.read_csv("tasa_incidencia_nacional.csv")
+dataNationalIRate = {}
+dataNationalIRate["TOTAL"] = {}
+dataNationalIRate["TOTAL"]["name"] = r"Total"
+dataNationalIRate["TOTAL"]["data"] = {}
+for i in dfNationalIRate.index:
+    dataNationalIRate["TOTAL"]["data"][dfNationalIRate["fecha"][i]]= float(dfNationalIRate["carga.estimada"][i])
+
+url_region = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto69/carga.regional.ajustada.csv"
+res = requests.get(url_region, allow_redirects=True)
+with open("tasa_incidencia_regional.csv","wb") as file:
+    file.write(res.content)
+
+dfRegionalIRate = pd.read_csv("tasa_incidencia_regional.csv")
+dataRegionalIRate = {}
 for region in regiones:
     regionID=regionesID[region]
-    dataIRate[regionID] = {}
-    dataIRate[regionID]["name"] = region
-    dataIRate[regionID]["data"] = {}
-    for j in range(dfIRate.shape[1]): # Recorrer columnas
-        if dfIRate.iloc[1,j] == "Total":
-            for i in range(dfIRate.shape[0]): # Recorrer filas
-                if i > 4:
-                    dataIRate[regionID]["data"][dfIRate["Region"][i]]= float(dfIRate.iloc[i,j])         
+    dataRegionalIRate[regionID] = {}
+    dataRegionalIRate[regionID]["name"] = region
+    dataRegionalIRate[regionID]["data"] = {}
+for i in dfRegionalIRate.index:
+    regionID=regionesID[dfRegionalIRate["Region"][i]]
+    dataRegionalIRate[regionID]["data"][dfRegionalIRate["fecha"][i]]= float(dfRegionalIRate["carga.estimada"][i])       
+
+dataRegionalIRate["TOTAL"] = dataNationalIRate["TOTAL"]
 
 with open(f"../src/data/tasa_incidencia.json", "w") as file:
-    json.dump(dataIRate, file, indent=4)
+    json.dump(dataRegionalIRate, file, indent=4)
+'''

@@ -4,9 +4,10 @@
 
 .app-container {
   display: flex;
+  justify-content: space-around;
 }
 
-.pie-wrap {
-  width: 100%;
-  height: 100%;
+.tooltip {
+  background-color: white;
+  font-size: 95%;
 }
