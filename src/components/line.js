@@ -1,4 +1,6 @@
+import "../App.css";
 import { Line } from "@nivo/line";
+import { BsFillCircleFill } from "react-icons/bs";
 
 const MyLine = ({ data, screenWidth }) => (
   <Line
@@ -17,7 +19,7 @@ const MyLine = ({ data, screenWidth }) => (
       min: "auto",
       max: "auto",
     }}
-    yFormat=",d"
+    yFormat=">-,.1~f"
     xFormat={"time:%Y-%m-%d"}
     axisTop={null}
     axisRight={null}
@@ -51,13 +53,22 @@ const MyLine = ({ data, screenWidth }) => (
     pointLabelYOffset={0}
     useMesh={true}
     curve={"monotoneX"}
+    tooltip={(d) => {
+      return (
+        <div className="tooltip">
+          <BsFillCircleFill size={10} color={d.point.borderColor} />{" "}
+          <b>{d.point.serieId} </b> ({d.point.data.xFormatted}):{" "}
+          {d.point.data.yFormatted}
+        </div>
+      );
+    }}
     legends={[
       {
         anchor: "top-left",
         direction: "column",
         justify: false,
         translateX: 0,
-        translateY: 0,
+        translateY: -20,
         itemsSpacing: -2,
         itemDirection: "left-to-right",
         itemWidth: 70,
@@ -66,15 +77,6 @@ const MyLine = ({ data, screenWidth }) => (
         symbolSize: 12,
         symbolShape: "circle",
         symbolBorderColor: "rgba(0, 0, 0, .5)",
-        effects: [
-          {
-            on: "hover",
-            style: {
-              itemBackground: "rgba(0, 0, 0, .03)",
-              itemOpacity: 1,
-            },
-          },
-        ],
       },
     ]}
   />
