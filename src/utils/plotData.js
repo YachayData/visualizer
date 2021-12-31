@@ -2,7 +2,7 @@ import dataUCI from "../data/pacientes_UCI.json";
 import dataTotalCases from "../data/casos_totales_acumulados.json";
 import dataDeceased from "../data/fallecidos_acumulados.json";
 import dataIncidenceRate from "../data/tasa_incidencia.json";
-import dataDefault from "../data/dataDefault.json";
+import dataDefault from "../data/data_default.json";
 import { parseDate } from "./general";
 
 export const generateLinePlotData = (params) => {
@@ -32,7 +32,6 @@ export const generateLinePlotData = (params) => {
       plotData.push(info);
     });
   } else {
-    console.log("entreee");
     var data = dataDefault[" "]["data"];
     var info = {
       id: dataDefault[" "]["name"],

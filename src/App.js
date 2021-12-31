@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import "./App.css";
 import { Container, Row, Col } from "reactstrap";
-import ResponsiveLine from "./components/line";
+import LinePlot from "./components/linePlot";
 import { generateLinePlotData } from "./utils/plotData";
 import PlotOptions from "./components/plotOptions";
 
@@ -41,7 +41,7 @@ function App() {
                 currentRegion={currentRegion}
                 setCurrentRegion={(e) => setCurrentRegion(e)}
               />
-              <ResponsiveLine data={data} screenWidth={width} />
+              <LinePlot data={data} screenWidth={width} />
             </Col>
           </Row>
         </Container>
