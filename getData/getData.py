@@ -1,5 +1,6 @@
 import pandas as pd 
 import numpy as np
+import math
 import requests
 import json
 import infoRegiones
@@ -37,7 +38,7 @@ for day in accumulatedTotalCases.keys():
 
 with open(f"../src/data/casos_totales_acumulados.json", "w") as file:
     json.dump(dataTotalCases, file, indent=4)
-    
+
 # Pacientes UCI 
 url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto8/UCI_T.csv"
 res = requests.get(url, allow_redirects=True)

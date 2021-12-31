@@ -43,6 +43,7 @@ const MyLine = ({ data, screenWidth }) => (
       legendOffset: 0,
       legendPosition: "middle",
       max: "auto",
+      format: ">-,.1~f",
     }}
     enableGridX={false}
     pointSize={5}
