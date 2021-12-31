@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Chip from "@mui/material/Chip";
 import data from "../data/data.json";
-import regiones from "../data/dataRegiones.json";
+import regiones from "../data/data_regiones.json";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
