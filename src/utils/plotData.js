@@ -1,41 +1,61 @@
-import dataUCI from "../data/pacientes_UCI.json";
-import dataTotalCases from "../data/casos_totales_acumulados.json";
-import dataDeceased from "../data/fallecidos_acumulados.json";
-import dataIncidenceRate from "../data/tasa_incidencia.json";
+// Nacional
+import dataTotalCasesNacional from "../data/casos_totales_acumulados_nacional.json";
+import dataDeceasedNacional from "../data/fallecidos_acumulados_nacional.json";
+import dataIncidenceRateNacional from "../data/tasa_incidencia_nacional.json";
+import dataUCINacional from "../data/pacientes_UCI_nacional.json";
+// Regiones
+import dataTotalCasesRegiones from "../data/casos_totales_acumulados_region.json";
+import dataDeceasedRegiones from "../data/fallecidos_acumulados_region.json";
+import dataIncidenceRateRegiones from "../data/tasa_incidencia_region.json";
+import dataUCIRegiones from "../data/pacientes_UCI_region.json";
+// Comunas
+import dataTotalCasesComunas from "../data/casos_totales_acumulados_comuna.json";
+import dataDeceasedComunas from "../data/fallecidos_acumulados_comuna.json";
+
 import dataDefault from "../data/data_default.json";
 import { parseDate } from "./general";
 
-export const generateLinePlotData = (params) => {
-  var dataSource = dataTotalCases;
-  if (params.dataType == "UCI") {
-    dataSource = dataUCI;
-  } else if (params.dataType == "DECEASED") {
-    dataSource = dataDeceased;
-  } else if (params.dataType == "IncidenceRate") {
-    dataSource = dataIncidenceRate;
+export const generateLinePlotData = (props) => {
+  var dataSource = {};
+  var current = [];
+  if (props.dataGranularity == "TOTAL") {
+    current = ["TOTAL"];
+    if (props.dataType == "TotalCases") {
+      dataSource = dataTotalCasesNacional;
+    } else if (props.dataType == "UCI") {
+      dataSource = dataUCINacional;
+    } else if (props.dataType == "DECEASED") {
+      dataSource = dataDeceasedNacional;
+    } else if (props.dataType == "IncidenceRate") {
+      dataSource = dataIncidenceRateNacional;
+    }
+  } else if (props.dataGranularity == "REGIONES") {
+    current = props.currentRegion;
+    if (props.dataType == "TotalCases") {
+      dataSource = dataTotalCasesRegiones;
+    } else if (props.dataType == "UCI") {
+      dataSource = dataUCIRegiones;
+    } else if (props.dataType == "DECEASED") {
+      dataSource = dataDeceasedRegiones;
+    } else if (props.dataType == "IncidenceRate") {
+      dataSource = dataIncidenceRateRegiones;
+    }
+  } else if (props.dataGranularity == "COMUNAS") {
+    current = props.currentComuna;
+    if (props.dataType == "TotalCases") {
+      dataSource = dataTotalCasesComunas;
+    } else if (props.dataType == "DECEASED") {
+      dataSource = dataDeceasedComunas;
+    } else if (props.dataType == "IncidenceRate") {
+      dataSource = dataIncidenceRateComunas;
+    }
   }
   const plotData = [];
-  console.log(params.currentRegion.length);
-  if (params.currentRegion.length !== 0) {
-    params.currentRegion.map((region) => {
-      var data = dataSource[region]["data"];
-      var info = {
-        id: dataSource[region]["name"],
-        color: "hsl(105, 70%, 50%)",
-        data: Object.keys(data).map((d) => {
-          return {
-            x: parseDate(d),
-            y: data[d],
-          };
-        }),
-      };
-      plotData.push(info);
-    });
-  } else {
-    var data = dataDefault[" "]["data"];
+  current.map((d) => {
+    var data = dataSource[d]["data"];
     var info = {
-      id: dataDefault[" "]["name"],
-      color: "hsl(0, 100%, 100%)",
+      id: dataSource[d]["name"],
+      color: "hsl(105, 70%, 50%)",
       data: Object.keys(data).map((d) => {
         return {
           x: parseDate(d),
@@ -44,6 +64,6 @@ export const generateLinePlotData = (params) => {
       }),
     };
     plotData.push(info);
-  }
+  });
   return plotData;
 };

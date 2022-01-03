@@ -1,6 +1,6 @@
 {
     "TotalCases": "Casos Totales Acumulados",
-    "UCI": "Pacientes COVID-19 en UCI",
     "DECEASED": "Fallecidos Acumulados",
+    "UCI": "Pacientes COVID-19 en UCI",
     "IncidenceRate": "Tasa de incidencia"
 }
