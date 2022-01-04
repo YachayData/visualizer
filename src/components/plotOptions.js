@@ -3,13 +3,16 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import Autocomplete from "@mui/material/Autocomplete";
-import TextField from "@mui/material/TextField";
 import data from "../data/data.json";
 import regiones from "../data/data_regiones.json";
 import comunas from "../data/data_comunas.json";
+import {
+  CssTextField,
+  CssAutocomplete,
+  CssButton,
+  CssSelect,
+} from "./customElements";
 
 const plotOptions = (props) => {
   const [selected, setSelected] = useState(1);
@@ -22,7 +25,7 @@ const plotOptions = (props) => {
     <div>
       <FormControl size="medium">
         <InputLabel id="data type">Información</InputLabel>
-        <Select
+        <CssSelect
           labelId="data type"
           id="data type"
           value={props.dataType}
@@ -32,7 +35,7 @@ const plotOptions = (props) => {
         >
           {Object.keys(data).map((d) => {
             if (props.dataGranularity === "COMUNAS") {
-              if (d === "UCI" || d === "IncidenceRate") {
+              if (d === "UCI") {
                 return <div />;
               } else {
                 return (
@@ -49,22 +52,22 @@ const plotOptions = (props) => {
               );
             }
           })}
-        </Select>
+        </CssSelect>
       </FormControl>
       <br />
       <br />
       <ButtonGroup variant="outlined" aria-label="group" color="primary">
-        <Button
-          color={selected === 1 ? "secondary" : "primary"}
+        <CssButton
+          style={{ backgroundColor: selected == 1 ? "#eee" : "#ccc" }}
           onClick={() => {
             setSelected(1);
             props.setDataGranularity("TOTAL");
           }}
         >
           Total
-        </Button>
-        <Button
-          color={selected === 2 ? "secondary" : "primary"}
+        </CssButton>
+        <CssButton
+          style={{ backgroundColor: selected == 2 ? "#eee" : "#ccc" }}
           onClick={() => {
             setSelected(2);
             props.setDataGranularity("REGIONES");
@@ -72,12 +75,12 @@ const plotOptions = (props) => {
           }}
         >
           Regiones
-        </Button>
-        {props.dataType === "UCI" || props.dataType === "IncidenceRate" ? (
+        </CssButton>
+        {props.dataType === "UCI" ? (
           <div />
         ) : (
-          <Button
-            color={selected === 3 ? "secondary" : "primary"}
+          <CssButton
+            style={{ backgroundColor: selected == 3 ? "#eee" : "#ccc" }}
             onClick={() => {
               setSelected(3);
               props.setDataGranularity("COMUNAS");
@@ -85,14 +88,14 @@ const plotOptions = (props) => {
             }}
           >
             Comunas
-          </Button>
+          </CssButton>
         )}
       </ButtonGroup>
       <br />
       <br />
       {selected == 2 ? (
         <FormControl style={{ width: "60vh" }}>
-          <Autocomplete
+          <CssAutocomplete
             multiple
             id="tags-outlined"
             options={Object.keys(regiones)}
@@ -103,13 +106,13 @@ const plotOptions = (props) => {
             }}
             filterSelectedOptions
             renderInput={(params) => (
-              <TextField {...params} label="Regiones" placeholder="" />
+              <CssTextField {...params} label="Regiones" placeholder="" />
             )}
           />
         </FormControl>
       ) : selected === 3 ? (
         <FormControl style={{ width: "60vh" }}>
-          <Autocomplete
+          <CssAutocomplete
             multiple
             id="tags-outlined"
             options={Object.keys(comunas)}
@@ -120,7 +123,7 @@ const plotOptions = (props) => {
             }}
             filterSelectedOptions
             renderInput={(params) => (
-              <TextField {...params} label="Comunas" placeholder="" />
+              <CssTextField {...params} label="Comunas" placeholder="" />
             )}
           />
         </FormControl>

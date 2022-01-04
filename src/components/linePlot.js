@@ -55,6 +55,9 @@ const MyLine = ({ data, screenWidth }) => {
       pointBorderColor={{ from: "serieColor" }}
       pointLabelYOffset={0}
       useMesh={true}
+      theme={{
+        fontFamily: "Saira",
+      }}
       curve={"monotoneX"}
       tooltip={(d) => {
         return (
@@ -71,7 +74,7 @@ const MyLine = ({ data, screenWidth }) => {
           direction: "column",
           justify: false,
           translateX: -10,
-          translateY: -12 * dataLength,
+          translateY: -10 * dataLength - 3,
           itemsSpacing: 0,
           itemDirection: "left-to-right",
           itemWidth: 90,

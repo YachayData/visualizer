@@ -4,6 +4,7 @@ import { Container, Row, Col } from "reactstrap";
 import LinePlot from "./components/linePlot";
 import { generateLinePlotData } from "./utils/plotData";
 import PlotOptions from "./components/plotOptions";
+import Bottom from "./components/bottom";
 
 function App() {
   const [width, setWindowWidth] = useState(0);
@@ -50,12 +51,7 @@ function App() {
                 setCurrentComuna={(e) => setCurrentComuna(e)}
               />
               <LinePlot data={data} screenWidth={width} />
-              <p className="sub-text">
-                Creado por{" "}
-                <a className="link" href="https://www.yachaydata.cl/">
-                  Yachay Data
-                </a>
-              </p>
+              <Bottom />
             </Col>
           </Row>
         </Container>
