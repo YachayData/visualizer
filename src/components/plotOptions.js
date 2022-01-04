@@ -3,50 +3,19 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import Chip from "@mui/material/Chip";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 import data from "../data/data.json";
 import regiones from "../data/data_regiones.json";
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 3 + ITEM_PADDING_TOP,
-      width: 200,
-    },
-  },
-};
+import comunas from "../data/data_comunas.json";
 
 const plotOptions = (props) => {
   const [selected, setSelected] = useState(1);
 
   const handleChangeType = (e) => {
     props.setDataType(e.target.value);
-  };
-
-  const handleChangeRegion = (e) => {
-    const {
-      target: { value },
-    } = e;
-    props.setCurrentRegion([]);
-    props.setCurrentRegion(
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
-
-  const handleChangeComuna = (e) => {
-    const {
-      target: { value },
-    } = e;
-    props.setCurrentComuna([]);
-    props.setCurrentComuna(
-      typeof value === "string" ? value.split(",") : value
-    );
   };
 
   return (
@@ -122,60 +91,38 @@ const plotOptions = (props) => {
       <br />
       <br />
       {selected == 2 ? (
-        <FormControl size="medium">
-          <InputLabel id="region">Regiones</InputLabel>
-          <Select
-            labelId="region"
-            id="region"
+        <FormControl style={{ width: "60vh" }}>
+          <Autocomplete
             multiple
+            id="tags-outlined"
+            options={Object.keys(regiones)}
+            getOptionLabel={(option) => regiones[option]["name"]}
             value={props.currentRegion}
-            onChange={handleChangeRegion}
-            input={<OutlinedInput id="region" label="Regiones" />}
-            renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
+            onChange={(e, value) => {
+              props.setCurrentRegion(value);
+            }}
+            filterSelectedOptions
+            renderInput={(params) => (
+              <TextField {...params} label="Regiones" placeholder="" />
             )}
-            MenuProps={MenuProps}
-            style={{ minheight: 40, width: "45vh" }}
-          >
-            {Object.keys(regiones).map((d) => (
-              <MenuItem value={d} key={d}>
-                {regiones[d]["name"]}
-              </MenuItem>
-            ))}
-          </Select>
+          />
         </FormControl>
       ) : selected === 3 ? (
-        <FormControl size="medium">
-          <InputLabel id="comuna">Comunas</InputLabel>
-          <Select
-            labelId="comuna"
-            id="comuna"
+        <FormControl style={{ width: "60vh" }}>
+          <Autocomplete
             multiple
+            id="tags-outlined"
+            options={Object.keys(comunas)}
+            getOptionLabel={(option) => comunas[option]}
             value={props.currentComuna}
-            onChange={handleChangeComuna}
-            input={<OutlinedInput id="comuna" label="Comunas" />}
-            renderValue={(selected) => (
-              <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
+            onChange={(e, value) => {
+              props.setCurrentComuna(value);
+            }}
+            filterSelectedOptions
+            renderInput={(params) => (
+              <TextField {...params} label="Comunas" placeholder="" />
             )}
-            MenuProps={MenuProps}
-            style={{ minheight: 40, width: "45vh" }}
-          >
-            {Object.keys(regiones).map((region) =>
-              Object.keys(regiones[region]["comunas"]).map((comuna) => (
-                <MenuItem value={comuna} key={comuna}>
-                  {regiones[region]["comunas"][comuna]}
-                </MenuItem>
-              ))
-            )}
-          </Select>
+          />
         </FormControl>
       ) : (
         <div />

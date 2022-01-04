@@ -1,7 +1,6 @@
 import "../App.css";
 import { Line } from "@nivo/line";
 import { BsFillCircleFill } from "react-icons/bs";
-import { useState } from "react";
 
 const MyLine = ({ data, screenWidth }) => {
   const dataLength = data.length;
