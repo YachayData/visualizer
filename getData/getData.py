@@ -3,6 +3,7 @@ import numpy as np
 import requests
 import json
 import info
+import math
 
 regiones = info.regiones
 comunas = info.comunas
@@ -23,6 +24,8 @@ with open("casos_totales_por_region.csv","wb") as file:
 dfTotalCases = pd.read_csv("casos_totales_por_region.csv")
 dataTotalCases = {}
 accumulatedTotalCases = {}
+
+
 for region in regiones.keys():
     dataTotalCases[region] = {"name": regiones[region], "data": {}}
     for i in dfTotalCases.index:
