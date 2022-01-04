@@ -13,7 +13,7 @@ def getRegionID(region):
             return ID
 
 
-############################## Casos totales acumulados ##############################
+############################ Casos totales acumulados ############################
 # Regiones
 url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto3/CasosTotalesCumulativo_T.csv"
 res = requests.get(url, allow_redirects=True)
@@ -105,7 +105,7 @@ with open(f"../src/data/fallecidos_acumulados_comuna.json", "w") as file:
 
 
 
-############################## Tasa de incidencia ##############################
+############################### Tasa de incidencia ###############################
 # Nacional
 url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto69/carga.nacional.ajustada.csv"
 res = requests.get(url, allow_redirects=True)
@@ -133,7 +133,7 @@ for i in dfRegionalIRate.index:
 with open(f"../src/data/tasa_incidencia_region.json", "w") as file:
     json.dump(dataRegionalIRate, file, indent=4)
 
-############################## Pacientes UCI ##############################
+################################ Pacientes UCI ################################
 # Nacional
 url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto8/UCI_T.csv"
 res = requests.get(url, allow_redirects=True)

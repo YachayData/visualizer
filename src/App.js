@@ -50,6 +50,12 @@ function App() {
                 setCurrentComuna={(e) => setCurrentComuna(e)}
               />
               <LinePlot data={data} screenWidth={width} />
+              <p className="sub-text">
+                Creado por{" "}
+                <a className="link" href="https://www.yachaydata.cl/">
+                  Yachay Data
+                </a>
+              </p>
             </Col>
           </Row>
         </Container>

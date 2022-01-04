@@ -11,3 +11,12 @@
   background-color: white;
   font-size: 95%;
 }
+
+.sub-text {
+  font-size: 0.35cm;
+  color: gray;
+}
+
+.link {
+  color: gray;
+}

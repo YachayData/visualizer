@@ -63,7 +63,6 @@ const plotOptions = (props) => {
         >
           {Object.keys(data).map((d) => {
             if (props.dataGranularity === "COMUNAS") {
-              console.log("entre acaaa");
               if (d === "UCI" || d === "IncidenceRate") {
                 return <div />;
               } else {
@@ -100,6 +99,7 @@ const plotOptions = (props) => {
           onClick={() => {
             setSelected(2);
             props.setDataGranularity("REGIONES");
+            props.setCurrentRegion(["AP"]);
           }}
         >
           Regiones
@@ -112,6 +112,7 @@ const plotOptions = (props) => {
             onClick={() => {
               setSelected(3);
               props.setDataGranularity("COMUNAS");
+              props.setCurrentComuna(["Arica"]);
             }}
           >
             Comunas
