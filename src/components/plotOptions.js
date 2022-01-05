@@ -9,10 +9,6 @@ import { CssTextField, CssAutocomplete, CssButton } from "./customElements";
 const plotOptions = (props) => {
   const [selected, setSelected] = useState(1);
 
-  const handleChangeType = (b) => {
-    props.setDataType(e.target.value);
-  };
-
   return (
     <div>
       <FormControl style={{ width: "50vh" }}>

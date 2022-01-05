@@ -2,6 +2,11 @@ import "../App.css";
 import { Line } from "@nivo/line";
 import { BsFillCircleFill } from "react-icons/bs";
 
+const integerFormat = (e) => {
+  const num = e.toLocaleString("pt-BR");
+  return num;
+};
+
 const MyLine = ({ data, screenWidth }) => {
   const dataLength = data.length;
   return (
@@ -17,7 +22,7 @@ const MyLine = ({ data, screenWidth }) => {
       }}
       xScale={{
         type: "time",
-        format: "%Y-%m-%d",
+        format: "%d-%m-%Y",
         precision: "day",
         useUTC: false,
       }}
@@ -27,8 +32,8 @@ const MyLine = ({ data, screenWidth }) => {
         max: "auto",
       }}
       colors={{ scheme: "spectral" }}
-      yFormat=">-,.1~f"
-      xFormat={"time:%Y-%m-%d"}
+      yFormat={integerFormat}
+      xFormat={"time:%d-%m-%Y"}
       axisTop={null}
       axisRight={null}
       axisBottom={{
@@ -51,7 +56,7 @@ const MyLine = ({ data, screenWidth }) => {
         legendOffset: 0,
         legendPosition: "middle",
         max: "auto",
-        format: ">-,.1~f",
+        format: integerFormat,
       }}
       enableGridX={false}
       pointSize={5}
