@@ -9,7 +9,12 @@ const MyLine = ({ data, screenWidth }) => {
       data={data}
       height={screenWidth > 600 ? 300 + 20 * dataLength : 250}
       width={screenWidth > 600 ? 600 : 450}
-      margin={{ top: 15 * dataLength, right: 80, bottom: 20, left: 110 }}
+      margin={{
+        top: 15 * dataLength,
+        right: 80,
+        bottom: screenWidth > 600 ? 20 : 41,
+        left: 110,
+      }}
       xScale={{
         type: "time",
         format: "%Y-%m-%d",
