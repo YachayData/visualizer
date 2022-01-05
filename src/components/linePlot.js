@@ -21,6 +21,7 @@ const MyLine = ({ data, screenWidth }) => {
         min: "auto",
         max: "auto",
       }}
+      colors={{ scheme: "spectral" }}
       yFormat=">-,.1~f"
       xFormat={"time:%Y-%m-%d"}
       axisTop={null}

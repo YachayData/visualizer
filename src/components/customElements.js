@@ -3,7 +3,6 @@ import { styled } from "@mui/material/styles";
 import { withStyles } from "@material-ui/core/styles";
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from "@mui/material/Button";
-import Select from "@mui/material/Select";
 
 export const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -50,6 +49,10 @@ export const CssAutocomplete = withStyles({
       fontFamily: "Saira",
     },
   },
+  option: {
+    backgroundColor: "white",
+    borderRadius: 20,
+  },
 })(Autocomplete);
 
 export const CssButton = styled(Button)({
@@ -69,15 +72,5 @@ export const CssButton = styled(Button)({
     color: "#555",
     backgroundColor: "#eee",
     border: 0,
-  },
-});
-
-export const CssSelect = styled(Select)({
-  fontFamily: "Saira",
-  borderRadius: 30,
-  "&:hover": {
-    "&& fieldset": {
-      borderColor: "#8c2981",
-    },
   },
 });

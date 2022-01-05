@@ -68,7 +68,7 @@ export const generateLinePlotData = (props) => {
     var data = dataSource[d]["data"];
     var info = {
       id: dataSource[d]["name"],
-      color: "hsl(105, 70%, 50%)",
+      color: "hsl(104, 70%, 50%)",
       data: Object.keys(data).map((d) => {
         return {
           x: parseDate(d),
