@@ -12,19 +12,40 @@ const plotOptions = (props) => {
   return (
     <div>
       <FormControl style={{ width: "50vh" }}>
-        <CssAutocomplete
-          disableClearable
-          id="Información"
-          defaultValue={"TotalCases"}
-          options={Object.keys(data)}
-          onChange={(e, value) => {
-            props.setDataType(value);
-          }}
-          getOptionLabel={(option) => data[option]}
-          renderInput={(params) => (
-            <CssTextField {...params} label="Información" placeholder="" />
-          )}
-        />
+        {props.dataGranularity === "COMUNAS" ? (
+          <CssAutocomplete
+            disableClearable
+            id="Información comunas"
+            defaultValue={"TotalCases"}
+            options={[
+              "TotalCases",
+              "DailyTotalCases",
+              "DECEASED",
+              "IncidenceRate",
+            ]}
+            onChange={(e, value) => {
+              props.setDataType(value);
+            }}
+            getOptionLabel={(option) => data[option]}
+            renderInput={(params) => (
+              <CssTextField {...params} label="Información" placeholder="" />
+            )}
+          />
+        ) : (
+          <CssAutocomplete
+            disableClearable
+            id="Información"
+            defaultValue={"TotalCases"}
+            options={Object.keys(data)}
+            onChange={(e, value) => {
+              props.setDataType(value);
+            }}
+            getOptionLabel={(option) => data[option]}
+            renderInput={(params) => (
+              <CssTextField {...params} label="Información" placeholder="" />
+            )}
+          />
+        )}
       </FormControl>
       <br />
       <br />
