@@ -4,7 +4,7 @@ import "../App.css";
 const Bottom = (props) => (
   <p
     className="sub-text"
-    style={{ fontSize: props.screenWidth > 600 ? 14 : 11 }}
+    style={{ fontSize: props.screenWidth > 600 ? 14 : 7 }}
   >
     Última actualización {time.day}-{time.month}-{time.year} {time.hour}:
     {time.minute} <br />

@@ -25,6 +25,7 @@ export const CssTextField = styled(TextField)({
 export const CssAutocomplete = withStyles({
   tag: {
     backgroundColor: "#b73779",
+    height: 25,
     position: "relative",
     zIndex: 0,
     "& .MuiChip-label": {
@@ -33,6 +34,7 @@ export const CssAutocomplete = withStyles({
     },
     "& .MuiChip-deleteIcon": {
       color: "white",
+      height: 18,
     },
   },
   input: {
