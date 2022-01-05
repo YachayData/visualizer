@@ -49,9 +49,10 @@ function App() {
                 setCurrentRegion={(e) => setCurrentRegion(e)}
                 currentComuna={currentComuna}
                 setCurrentComuna={(e) => setCurrentComuna(e)}
+                screenWidth={width}
               />
               <LinePlot data={data} screenWidth={width} />
-              <Bottom />
+              <Bottom screenWidth={width} />
             </Col>
           </Row>
         </Container>
