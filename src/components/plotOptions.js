@@ -69,7 +69,7 @@ const plotOptions = (props) => {
       <br />
       <br />
       {selected == 2 ? (
-        <FormControl style={{ width: "60vh" }}>
+        <FormControl style={{ width: "55vh" }}>
           <CssAutocomplete
             multiple
             id="tags-outlined"
