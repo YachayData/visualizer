@@ -73,8 +73,9 @@ const MyLine = ({ data, screenWidth }) => {
       tooltip={(d) => {
         return (
           <div className="tooltip">
-            <BsFillCircleFill size={10} color={d.point.borderColor} />{" "}
-            <b>{d.point.serieId} </b> ({d.point.data.xFormatted}):{" "}
+            <BsFillCircleFill size={10} color={d.point.borderColor} />
+            <b>{d.point.serieId} </b> <br />({d.point.data.xFormatted}):
+            <br />
             {d.point.data.yFormatted}
           </div>
         );
