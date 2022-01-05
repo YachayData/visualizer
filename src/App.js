@@ -4,24 +4,29 @@ import { Container, Row, Col } from "reactstrap";
 import LinePlot from "./components/linePlot";
 import { generateLinePlotData } from "./utils/plotData";
 import PlotOptions from "./components/plotOptions";
+import Bottom from "./components/bottom";
 
 function App() {
   const [width, setWindowWidth] = useState(0);
   const [data, setData] = useState([]);
   const [dataType, setDataType] = useState("TotalCases");
-  const [currentRegion, setCurrentRegion] = useState(["TOTAL"]);
+  const [dataGranularity, setDataGranularity] = useState("TOTAL");
+  const [currentRegion, setCurrentRegion] = useState([]);
+  const [currentComuna, setCurrentComuna] = useState([]);
 
   useEffect(() => {
     setData(
       generateLinePlotData({
         dataType: dataType,
+        dataGranularity: dataGranularity,
         currentRegion: currentRegion,
+        currentComuna: currentComuna,
       })
     );
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
-  }, [dataType, currentRegion]);
+  }, [dataType, currentRegion, currentComuna, dataGranularity]);
 
   const updateDimensions = () => {
     const width = window.innerWidth;
@@ -38,10 +43,15 @@ function App() {
               <PlotOptions
                 dataType={dataType}
                 setDataType={(e) => setDataType(e)}
+                dataGranularity={dataGranularity}
+                setDataGranularity={(e) => setDataGranularity(e)}
                 currentRegion={currentRegion}
                 setCurrentRegion={(e) => setCurrentRegion(e)}
+                currentComuna={currentComuna}
+                setCurrentComuna={(e) => setCurrentComuna(e)}
               />
               <LinePlot data={data} screenWidth={width} />
+              <Bottom />
             </Col>
           </Row>
         </Container>

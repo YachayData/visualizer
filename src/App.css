@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #ffffff;
 }
 
 .app-container {
@@ -10,4 +11,23 @@
 .tooltip {
   background-color: white;
   font-size: 95%;
+  font-family: "Saira", sans-serif;
+  border-radius: 0.5cm;
+}
+
+.sub-text {
+  font-size: 0.35cm;
+  font-family: "Saira", sans-serif;
+  color: #7e7e7e;
+}
+
+.link {
+  color: #7e7e7e;
+  font-family: "Saira", sans-serif;
+}
+
+h2 {
+  color: #464646;
+  font-family: "Saira", sans-serif;
+  font-weight: 500;
 }
