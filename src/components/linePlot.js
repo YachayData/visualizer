@@ -12,7 +12,7 @@ const MyLine = ({ data, screenWidth }) => {
       margin={{
         top: 15 * dataLength,
         right: 80,
-        bottom: screenWidth > 600 ? 20 : 43,
+        bottom: screenWidth > 600 ? 20 : 45,
         left: 110,
       }}
       xScale={{

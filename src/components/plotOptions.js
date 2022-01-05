@@ -19,6 +19,7 @@ const plotOptions = (props) => {
         <CssAutocomplete
           disableClearable
           id="Información"
+          defaultValue={"TotalCases"}
           options={Object.keys(data)}
           onChange={(e, value) => {
             props.setDataType(value);

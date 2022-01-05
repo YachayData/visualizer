@@ -3,7 +3,7 @@ import "../App.css";
 
 const Bottom = () => (
   <p className="sub-text">
-    Última actualización {time.year}-{time.month}-{time.day} {time.hour}:
+    Última actualización {time.day}-{time.month}-{time.year} {time.hour}:
     {time.minute} <br />
     Creado por{" "}
     <a className="link" href="https://www.yachaydata.cl/">
