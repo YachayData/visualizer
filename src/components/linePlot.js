@@ -10,7 +10,7 @@ const MyLine = ({ data, screenWidth }) => {
       height={screenWidth > 600 ? 300 + 20 * dataLength : 250}
       width={screenWidth > 600 ? 600 : 450}
       margin={{
-        top: 15 * dataLength,
+        top: 15 * dataLength + 15,
         right: 80,
         bottom: screenWidth > 600 ? 20 : 45,
         left: 110,
@@ -80,7 +80,7 @@ const MyLine = ({ data, screenWidth }) => {
           direction: "column",
           justify: false,
           translateX: -10,
-          translateY: -10 * dataLength - 3,
+          translateY: -10 * dataLength - 15,
           itemsSpacing: 0,
           itemDirection: "left-to-right",
           itemWidth: 90,

@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #ffffff;
+  overflow-x: hidden;
 }
 
 .app-container {
@@ -16,7 +17,7 @@
 }
 
 .sub-text {
-  font-size: 2vh;
+  font-size: 70%;
   font-family: "Saira", sans-serif;
   color: #7e7e7e;
 }
