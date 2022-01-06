@@ -33,8 +33,9 @@ const Bottom = (props) => {
         <a className="link" href="https://www.yachaydata.cl/">
           Yachay Data
         </a>{" "}
-        a partir de los datos del Ministerio de Salud <br /> disponibilizados
-        por la iniciativa{" "}
+        a partir de los datos del <br />
+        Ministerio de Salud disponibilizados por la iniciativa
+        <br />
         <a className="link" href="https://github.com/MinCiencia/Datos-COVID19">
           Datos-COVID19
         </a>{" "}
