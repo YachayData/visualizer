@@ -48,6 +48,16 @@ h3 {
   text-align: center;
 }
 
+@media (max-width: 600px) {
+  .pop-up {
+    height: auto;
+    width: 80vw;
+    justify-content: space-around;
+    align-content: center;
+    text-align: center;
+  }
+}
+
 .options-share {
   font-family: "Saira", sans-serif;
   font-size: 90%;
