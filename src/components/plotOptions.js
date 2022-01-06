@@ -16,7 +16,7 @@ const plotOptions = (props) => {
           <CssAutocomplete
             disableClearable
             id="Información comunas"
-            defaultValue={"TotalCases"}
+            defaultValue={"DailyTotalCases"}
             size="small"
             options={[
               "TotalCases",
@@ -37,7 +37,7 @@ const plotOptions = (props) => {
           <CssAutocomplete
             disableClearable
             id="Información Regiones y Nacional"
-            defaultValue={"TotalCases"}
+            defaultValue={"DailyTotalCases"}
             size="small"
             options={Object.keys(data)}
             onChange={(e, value) => {

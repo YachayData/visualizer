@@ -32,3 +32,40 @@ h2 {
   font-family: "Saira", sans-serif;
   font-weight: 500;
 }
+
+h3 {
+  color: #b73779;
+  font-family: "Saira", sans-serif;
+  font-weight: 400;
+  font-size: 95%;
+}
+
+.pop-up {
+  height: auto;
+  width: 70vh;
+  justify-content: space-around;
+  align-content: center;
+  text-align: center;
+}
+
+.options-share {
+  font-family: "Saira", sans-serif;
+  font-size: 90%;
+  color: #7e7e7e;
+}
+
+.option {
+  font-family: "Saira", sans-serif;
+  color: #464646;
+  font-size: 85%;
+}
+
+.close-button {
+  position: absolute;
+  top: 0cm;
+  right: 0cm;
+}
+
+.share-button {
+  margin-top: -0.3cm;
+}
