@@ -68,6 +68,11 @@ h3 {
   font-family: "Saira", sans-serif;
   color: #464646;
   font-size: 85%;
+  transition: background-color 0.5s;
+}
+
+.option:hover {
+  color: #7c7a7a;
 }
 
 .close-button {

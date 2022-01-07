@@ -1,7 +1,7 @@
 {
-    "DailyTotalCases": "Casos Totales Diarios (media 7 días)",
-    "IncidenceRate": "Tasa de Incidencia",
-    "TotalCases": "Casos Totales Acumulados",
+    "DailyTotalCases": "Nuevos Casos Diarios (media 7 días)",
+    "IncidenceRate": "Incidencia (media 7 días)",
+    "TotalCases": "Casos Totales",
     "UCI": "Pacientes COVID-19 en UCI",
     "DECEASED": "Fallecidos Acumulados"
 }

@@ -77,23 +77,3 @@ export const CssButton = styled(Button)({
     border: 0,
   },
 });
-
-export const CssButtonShare = styled(Button)({
-  borderRadius: 30,
-  backgroundColor: "#b73779",
-  fontSize: 13,
-  height: 25,
-  marginTop: -15,
-  fontFamily: "Saira",
-  color: "white",
-  "&:focus": {
-    color: "white",
-    backgroundColor: "#a42e6b",
-    border: 0,
-  },
-  "&:hover": {
-    color: "white",
-    backgroundColor: "#a42e6b",
-    border: 0,
-  },
-});

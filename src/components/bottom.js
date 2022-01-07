@@ -6,9 +6,12 @@ import { BsLink45Deg, BsCodeSlash } from "react-icons/bs";
 import IconButton from "@mui/material/IconButton";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
 import CloseIcon from "@mui/icons-material/Close";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import Button from "@mui/material/Button";
 
 const Bottom = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [copyStatus, setCopyStatus] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -18,6 +21,11 @@ const Bottom = (props) => {
     setAnchorEl(null);
   };
 
+  const copyCode = () => {
+    setCopyStatus(true);
+    setTimeout(() => setCopyStatus(false), 3000);
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
@@ -25,7 +33,7 @@ const Bottom = (props) => {
     <div>
       <p
         className="sub-text"
-        style={{ fontSize: props.screenWidth > 600 ? 14 : 7 }}
+        style={{ fontSize: props.screenWidth > 600 ? 12 : 7 }}
       >
         Última actualización: {time.day}-{time.month}-{time.year} {time.hour}:
         {time.minute} <br />
@@ -75,17 +83,29 @@ const Bottom = (props) => {
           <p className="options-share">
             <BsLink45Deg size={17} /> Copiar URL
           </p>
-          <p className="option">https://cpstuardo.github.io/visualizer/</p>
+          <CopyToClipboard
+            text={"https://cpstuardo.github.io/visualizer/"}
+            onCopy={copyCode}
+          >
+            <p className="option">https://cpstuardo.github.io/visualizer/</p>
+          </CopyToClipboard>
           <p className="options-share">
             <BsCodeSlash size={17} /> Agregar a tu página web
           </p>
-          <p className="option">
-            <code className="option">
-              &lt;iframe width=&quot;640&quot; height=&quot;360&quot;
-              src=&quot;https://cpstuardo.github.io/visualizer/&quot;
-              frameborder=&quot;0&quot; allowfullscreen &gt;&lt;/iframe&gt;
-            </code>
-          </p>
+          <CopyToClipboard
+            text={
+              '<iframe width="640" height="360" src="https://cpstuardo.github.io/visualizer/" frameborder="0" allowfullscreen ></iframe>'
+            }
+            onCopy={copyCode}
+          >
+            <p className="option">
+              <code className="option">
+                &lt;iframe width=&quot;640&quot; height=&quot;360&quot;
+                src=&quot;https://cpstuardo.github.io/visualizer/&quot;
+                frameborder=&quot;0&quot; allowfullscreen &gt;&lt;/iframe&gt;
+              </code>
+            </p>
+          </CopyToClipboard>
         </div>
       </Popover>
     </div>

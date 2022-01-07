@@ -19,10 +19,10 @@ const plotOptions = (props) => {
             defaultValue={"DailyTotalCases"}
             size="small"
             options={[
-              "TotalCases",
               "DailyTotalCases",
-              "DECEASED",
               "IncidenceRate",
+              "TotalCases",
+              "DECEASED",
             ]}
             onChange={(e, value) => {
               props.setDataType(value);
