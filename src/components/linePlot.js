@@ -15,10 +15,10 @@ const MyLine = ({ data, screenWidth }) => {
       height={screenWidth > 600 ? 300 + 20 * dataLength : 250}
       width={screenWidth > 600 ? 600 : 450}
       margin={{
-        top: 15 * dataLength + 15,
-        right: 80,
+        top: 15 * dataLength + 10,
+        right: 75,
         bottom: screenWidth > 600 ? 20 : 45,
-        left: 110,
+        left: 115,
       }}
       xScale={{
         type: "time",
@@ -74,7 +74,8 @@ const MyLine = ({ data, screenWidth }) => {
         return (
           <div className="tooltip">
             <BsFillCircleFill size={10} color={d.point.borderColor} />{" "}
-            <b>{d.point.serieId} </b> ({d.point.data.xFormatted}):{" "}
+            <b>{d.point.serieId} </b> <br />({d.point.data.xFormatted}):
+            <br />
             {d.point.data.yFormatted}
           </div>
         );
@@ -85,7 +86,7 @@ const MyLine = ({ data, screenWidth }) => {
           direction: "column",
           justify: false,
           translateX: -10,
-          translateY: -10 * dataLength - 15,
+          translateY: -15 * dataLength - 10,
           itemsSpacing: 0,
           itemDirection: "left-to-right",
           itemWidth: 90,

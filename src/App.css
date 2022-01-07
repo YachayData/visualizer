@@ -10,10 +10,11 @@
 }
 
 .tooltip {
-  background-color: white;
-  font-size: 95%;
+  background-color: rgba(255, 255, 255, 1);
+  font-size: 80%;
+  box-shadow: 1.5px 1.5px 3px #ccc;
   font-family: "Saira", sans-serif;
-  border-radius: 0.5cm;
+  border-radius: 0.1cm;
 }
 
 .sub-text {
@@ -30,4 +31,56 @@ h2 {
   color: #464646;
   font-family: "Saira", sans-serif;
   font-weight: 500;
+}
+
+h3 {
+  color: #b73779;
+  font-family: "Saira", sans-serif;
+  font-weight: 400;
+  font-size: 95%;
+}
+
+.pop-up {
+  height: auto;
+  width: 50vw;
+  justify-content: space-around;
+  align-content: center;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .pop-up {
+    height: auto;
+    width: 80vw;
+    justify-content: space-around;
+    align-content: center;
+    text-align: center;
+  }
+}
+
+.options-share {
+  font-family: "Saira", sans-serif;
+  font-size: 90%;
+  color: #7e7e7e;
+}
+
+.option {
+  font-family: "Saira", sans-serif;
+  color: #464646;
+  font-size: 85%;
+  transition: background-color 0.5s;
+}
+
+.option:hover {
+  color: #7c7a7a;
+}
+
+.close-button {
+  position: absolute;
+  top: 0cm;
+  right: 0cm;
+}
+
+.share-button {
+  margin-top: -0.3cm;
 }

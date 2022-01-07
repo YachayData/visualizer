@@ -9,7 +9,7 @@ import Bottom from "./components/bottom";
 function App() {
   const [width, setWindowWidth] = useState(0);
   const [data, setData] = useState([]);
-  const [dataType, setDataType] = useState("TotalCases");
+  const [dataType, setDataType] = useState("DailyTotalCases");
   const [dataGranularity, setDataGranularity] = useState("TOTAL");
   const [currentRegion, setCurrentRegion] = useState([]);
   const [currentComuna, setCurrentComuna] = useState([]);
