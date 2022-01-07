@@ -84,3 +84,9 @@ h3 {
 .share-button {
   margin-top: -0.3cm;
 }
+
+.copied {
+  color: black;
+  font-size: 11;
+  font-family: "Saira", sans-serif;
+}

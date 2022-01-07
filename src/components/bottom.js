@@ -80,6 +80,7 @@ const Bottom = (props) => {
             </IconButton>
           </div>
           <h3>¡Comparte la visualización!</h3>
+          {copyStatus ? <p className="copied">Copiado</p> : <div />}
           <p className="options-share">
             <BsLink45Deg size={17} /> Copiar URL
           </p>
