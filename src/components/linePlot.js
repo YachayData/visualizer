@@ -2,6 +2,11 @@ import "../App.css";
 import { Line } from "@nivo/line";
 import { BsFillCircleFill } from "react-icons/bs";
 
+const integerFormat = (e) => {
+  const num = e.toLocaleString("pt-BR");
+  return num;
+};
+
 const MyLine = ({ data, screenWidth }) => {
   const dataLength = data.length;
   return (
@@ -10,14 +15,14 @@ const MyLine = ({ data, screenWidth }) => {
       height={screenWidth > 600 ? 300 + 20 * dataLength : 250}
       width={screenWidth > 600 ? 600 : 450}
       margin={{
-        top: 15 * dataLength,
-        right: 80,
-        bottom: screenWidth > 600 ? 20 : 43,
-        left: 110,
+        top: 15 * dataLength + 10,
+        right: 75,
+        bottom: screenWidth > 600 ? 20 : 45,
+        left: 115,
       }}
       xScale={{
         type: "time",
-        format: "%Y-%m-%d",
+        format: "%d-%m-%Y",
         precision: "day",
         useUTC: false,
       }}
@@ -27,8 +32,8 @@ const MyLine = ({ data, screenWidth }) => {
         max: "auto",
       }}
       colors={{ scheme: "spectral" }}
-      yFormat=">-,.1~f"
-      xFormat={"time:%Y-%m-%d"}
+      yFormat={integerFormat}
+      xFormat={"time:%d-%m-%Y"}
       axisTop={null}
       axisRight={null}
       axisBottom={{
@@ -51,7 +56,7 @@ const MyLine = ({ data, screenWidth }) => {
         legendOffset: 0,
         legendPosition: "middle",
         max: "auto",
-        format: ">-,.1~f",
+        format: integerFormat,
       }}
       enableGridX={false}
       pointSize={5}
@@ -69,7 +74,8 @@ const MyLine = ({ data, screenWidth }) => {
         return (
           <div className="tooltip">
             <BsFillCircleFill size={10} color={d.point.borderColor} />{" "}
-            <b>{d.point.serieId} </b> ({d.point.data.xFormatted}):{" "}
+            <b>{d.point.serieId} </b> <br />({d.point.data.xFormatted}):
+            <br />
             {d.point.data.yFormatted}
           </div>
         );
@@ -80,7 +86,7 @@ const MyLine = ({ data, screenWidth }) => {
           direction: "column",
           justify: false,
           translateX: -10,
-          translateY: -10 * dataLength - 3,
+          translateY: -15 * dataLength - 10,
           itemsSpacing: 0,
           itemDirection: "left-to-right",
           itemWidth: 90,

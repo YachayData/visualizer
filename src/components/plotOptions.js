@@ -9,25 +9,47 @@ import { CssTextField, CssAutocomplete, CssButton } from "./customElements";
 const plotOptions = (props) => {
   const [selected, setSelected] = useState(1);
 
-  const handleChangeType = (b) => {
-    props.setDataType(e.target.value);
-  };
-
   return (
     <div>
-      <FormControl style={{ width: "50vh" }}>
-        <CssAutocomplete
-          disableClearable
-          id="Información"
-          options={Object.keys(data)}
-          onChange={(e, value) => {
-            props.setDataType(value);
-          }}
-          getOptionLabel={(option) => data[option]}
-          renderInput={(params) => (
-            <CssTextField {...params} label="Información" placeholder="" />
-          )}
-        />
+      <FormControl style={{ width: "55vh" }}>
+        {props.dataGranularity === "COMUNAS" ? (
+          <CssAutocomplete
+            disableClearable
+            id="Información comunas"
+            defaultValue={"DailyTotalCases"}
+            size="small"
+            options={[
+              "DailyTotalCases",
+              "IncidenceRate",
+              "TotalCases",
+              "DECEASED",
+            ]}
+            onChange={(e, value) => {
+              props.setDataType(value);
+            }}
+            getOptionLabel={(option) => data[option]}
+            noOptionsText="No existen opciones"
+            renderInput={(params) => (
+              <CssTextField {...params} label="Información" placeholder="" />
+            )}
+          />
+        ) : (
+          <CssAutocomplete
+            disableClearable
+            id="Información Regiones y Nacional"
+            defaultValue={"DailyTotalCases"}
+            size="small"
+            options={Object.keys(data)}
+            onChange={(e, value) => {
+              props.setDataType(value);
+            }}
+            getOptionLabel={(option) => data[option]}
+            noOptionsText="No existen opciones"
+            renderInput={(params) => (
+              <CssTextField {...params} label="Información" placeholder="" />
+            )}
+          />
+        )}
       </FormControl>
       <br />
       <br />
@@ -69,39 +91,51 @@ const plotOptions = (props) => {
       <br />
       <br />
       {selected == 2 ? (
-        <FormControl style={{ width: "55vh" }}>
-          <CssAutocomplete
-            multiple
-            id="tags-outlined"
-            options={Object.keys(regiones)}
-            getOptionLabel={(option) => regiones[option]["name"]}
-            value={props.currentRegion}
-            onChange={(e, value) => {
-              props.setCurrentRegion(value);
-            }}
-            filterSelectedOptions
-            renderInput={(params) => (
-              <CssTextField {...params} label="Regiones" placeholder="" />
-            )}
-          />
-        </FormControl>
+        <div>
+          <FormControl style={{ width: "55vh" }}>
+            <CssAutocomplete
+              multiple
+              id="Regiones"
+              size="medium"
+              options={Object.keys(regiones)}
+              getOptionLabel={(option) => regiones[option]["name"]}
+              value={props.currentRegion}
+              onChange={(e, value) => {
+                props.setCurrentRegion(value);
+              }}
+              filterSelectedOptions
+              noOptionsText="No existen opciones"
+              renderInput={(params) => (
+                <CssTextField {...params} label="Regiones" placeholder="" />
+              )}
+            />
+          </FormControl>
+          <br />
+          <br />
+        </div>
       ) : selected === 3 ? (
-        <FormControl style={{ width: "55vh" }}>
-          <CssAutocomplete
-            multiple
-            id="tags-outlined"
-            options={Object.keys(comunas)}
-            getOptionLabel={(option) => comunas[option]}
-            value={props.currentComuna}
-            onChange={(e, value) => {
-              props.setCurrentComuna(value);
-            }}
-            filterSelectedOptions
-            renderInput={(params) => (
-              <CssTextField {...params} label="Comunas" placeholder="" />
-            )}
-          />
-        </FormControl>
+        <div>
+          <FormControl style={{ width: "55vh" }}>
+            <CssAutocomplete
+              multiple
+              id="Comunas"
+              size="medium"
+              options={Object.keys(comunas)}
+              getOptionLabel={(option) => comunas[option]}
+              value={props.currentComuna}
+              onChange={(e, value) => {
+                props.setCurrentComuna(value);
+              }}
+              filterSelectedOptions
+              noOptionsText="No existen opciones"
+              renderInput={(params) => (
+                <CssTextField {...params} label="Comunas" placeholder="" />
+              )}
+            />
+          </FormControl>
+          <br />
+          <br />
+        </div>
       ) : (
         <div />
       )}
