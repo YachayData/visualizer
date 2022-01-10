@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import json
 import datetime
 import requests
@@ -16,7 +17,7 @@ def preProcessor(df):
         region = regiones[ID]
         df.at["2020-06-17", region] = statistics.mean([df.at["2020-06-16", region], df.at["2020-06-18", region]])
     df.at["2020-06-17", "Total"] = statistics.mean([df.at["2020-06-16", "Total"], df.at["2020-06-18", "Total"]])
-'''
+
 ############################### Casos totales ###############################
 url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto3/CasosTotalesCumulativo_T.csv"
 res = requests.get(url, allow_redirects=True)
@@ -69,6 +70,7 @@ preProcessor(df)
 df = df.rolling(7).mean() # Calcular media móvil 7 
 df = df.iloc[7:] # Eliminar primeras filas
 df[df < 0] = 0
+df = np.round(df,decimals = 0)
 
 # Regiones
 data = {f"{region}": {
@@ -93,6 +95,7 @@ with open(f"../src/data/casos_diarios_nacional.json", "w") as file:
 df_comunas = df_comunas.diff() # Calcular la diferencia
 df_comunas[df_comunas < 0] = 0
 df_comunas = df_comunas.rolling(7).mean() # Calcular media móvil 7 
+df_comunas = np.round(df_comunas,decimals = 0) 
 df_comunas = df_comunas.iloc[7:] # Eliminar primeras filas
 data = {f"{comuna}": {
         "name": comunas[comuna], 
@@ -178,7 +181,7 @@ data = {"TOTAL": {
 }
 with open(f"../src/data/UCI_nacional.json", "w") as file:
     json.dump(data, file, indent=4)
-'''
+
 ###################### Tasa de incidencia (media 7 días) ######################
 url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto18/TasaDeIncidencia_T.csv"
 res = requests.get(url, allow_redirects=True)
@@ -203,6 +206,11 @@ df = df.rename(columns={
 df = df.set_index("Fecha")
 df = df.astype(float)
 df["Total"] = df.sum(axis=1)
+df = df.diff() # Calcular la diferencia
+df = df.rolling(7).mean() # Calcular media móvil 7 
+df = df.iloc[7:] # Eliminar primeras filas
+df[df < 0] = 0
+df = np.round(df,decimals = 2) 
 
 # Regiones
 data = {f"{region}": {
