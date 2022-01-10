@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: actualizar
+
+on:
+  schedule:
+  - cron: "0 * * *"
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  actualizarDatos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.7"
+      - name: Create Directory
+        run: |
+          cd getData
+          pip install -r requirements.txt
+          python3 getData.py
