@@ -239,6 +239,7 @@ df = df.diff() # Calcular la diferencia
 df = df.rolling(7).mean() # Calcular media móvil 7 
 df = df.iloc[7:] # Eliminar primeras filas
 df[df < 0] = 0
+df = np.round(df,decimals = 2) 
 
 data = {f"{comuna}": {
         "name": comunas[comuna], 
