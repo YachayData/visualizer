@@ -58,21 +58,14 @@ h3 {
   }
 }
 
-.options-share {
+.option-share {
   font-family: "Saira", sans-serif;
   font-size: 90%;
   color: #7e7e7e;
 }
 
-.option {
-  font-family: "Saira", sans-serif;
+.option-share:hover {
   color: #464646;
-  font-size: 85%;
-  transition: background-color 0.5s;
-}
-
-.option:hover {
-  color: #7c7a7a;
 }
 
 .close-button {
@@ -83,4 +76,10 @@ h3 {
 
 .share-button {
   margin-top: -0.3cm;
+}
+
+.copied {
+  color: #000000;
+  font-size: 3;
+  font-family: "Saira", sans-serif;
 }
