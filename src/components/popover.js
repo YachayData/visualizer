@@ -2,6 +2,7 @@ import Popover from "@mui/material/Popover";
 import { BsLink45Deg, BsCodeSlash } from "react-icons/bs";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
+import Button from "@mui/material/Button";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import "../App.css";
 
@@ -29,23 +30,26 @@ const PopoverShare = (props) => (
       <h3>¡Comparte la visualización!</h3>
       {props.copyStatus ? <p className="copied">Copiado</p> : <div />}
       <CopyToClipboard
-        text={"https://cpstuardo.github.io/visualizer/"}
+        text={"https://www.yachaydata.cl/visualizer/"}
         onCopy={props.copyCode}
       >
-        <p className="option-share">
+        <Button variant="text" style={{ color: "gray", fontFamily: "Saira" }}>
           <BsLink45Deg size={17} /> Copiar URL
-        </p>
+        </Button>
       </CopyToClipboard>
+      <br />
       <CopyToClipboard
         text={
           '<iframe width="640" height="360" src="https://cpstuardo.github.io/visualizer/" frameborder="0" allowfullscreen ></iframe>'
         }
         onCopy={props.copyCode}
       >
-        <p className="option-share">
+        <Button variant="text" style={{ color: "gray", fontFamily: "Saira" }}>
           <BsCodeSlash size={17} /> Insertar en tu sitio web
-        </p>
+        </Button>
       </CopyToClipboard>
+      <br />
+      <br />
     </div>
   </Popover>
 );
