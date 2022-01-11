@@ -7,7 +7,11 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    branches: [ main , development ]
+    branches: [ main ]
+  workflow_run: 
+    workflows: ["actualizar"]
+    types: 
+      - completed
 
 jobs:
   build:
