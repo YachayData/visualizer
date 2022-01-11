@@ -11,7 +11,7 @@ const plotOptions = (props) => {
 
   return (
     <div>
-      <FormControl style={{ width: "55vh" }}>
+      <FormControl style={{ width: props.screenWidth > 600 ? 400 : 300 }}>
         {props.dataGranularity === "COMUNAS" ? (
           <CssAutocomplete
             disableClearable
@@ -92,7 +92,7 @@ const plotOptions = (props) => {
       <br />
       {selected == 2 ? (
         <div>
-          <FormControl style={{ width: "55vh" }}>
+          <FormControl style={{ width: props.screenWidth > 600 ? 400 : 300 }}>
             <CssAutocomplete
               multiple
               id="Regiones"
@@ -115,7 +115,7 @@ const plotOptions = (props) => {
         </div>
       ) : selected === 3 ? (
         <div>
-          <FormControl style={{ width: "55vh" }}>
+          <FormControl style={{ width: props.screenWidth > 600 ? 400 : 300 }}>
             <CssAutocomplete
               multiple
               id="Comunas"
