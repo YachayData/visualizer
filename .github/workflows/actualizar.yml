@@ -3,38 +3,12 @@
 name: actualizar
 
 on:
-  schedule:
-  - cron: "0 * * *"
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  actualizarDatos:
+  printInputs:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: "3.7"
-      - name: Create Directory
-        run: |
-          cd getData
-          pip install -r requirements.txt
-          python3 getData.py
-      - name: Commit data files
-        run: |
-          mkdir test
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git status
-          git gc
-          git add -A
-          git commit -a -m "Added new date" || echo "Nothing to commit"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          force: true
+    - run: |
+        echo "Log level: ${{ github.event.inputs.logLevel }}"
+        echo "Tags: ${{ github.event.inputs.tags }}" 
