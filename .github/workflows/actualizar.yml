@@ -6,9 +6,33 @@ on:
   workflow_dispatch:
 
 jobs:
-  printInputs:
+  actualizar:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo "Log level: ${{ github.event.inputs.logLevel }}"
-        echo "Tags: ${{ github.event.inputs.tags }}" 
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.7"
+      - name: Create Directory
+        run: |
+          cd getData
+          pip install -r requirements.txt  
+          python3 main.py
+      - name: Commit data files
+        run: |
+          pwd
+          
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git status
+          git gc
+          git add -A
+          git commit -a -m "Added new date" || echo "Nothing to commit"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          force: true  
