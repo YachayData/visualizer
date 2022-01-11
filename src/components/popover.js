@@ -40,7 +40,7 @@ const PopoverShare = (props) => (
       <br />
       <CopyToClipboard
         text={
-          '<iframe width="640" height="360" src="https://cpstuardo.github.io/visualizer/" frameborder="0" allowfullscreen ></iframe>'
+          '<iframe width="640" height="360" src="https://yachaydata.github.io/visualizer/" frameborder="0" allowfullscreen ></iframe>'
         }
         onCopy={props.copyCode}
       >
