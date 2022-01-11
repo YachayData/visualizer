@@ -21,7 +21,9 @@ jobs:
         run: |
           cd getData
           pip install -r requirements.txt  
-          python3 getData.py
+          pwd
+          python getData.py
+          
       - name: Commit data files
         run: |
           pwd
