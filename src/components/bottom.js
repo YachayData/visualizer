@@ -34,13 +34,23 @@ const Bottom = (props) => {
         Última actualización: {time.day}-{time.month}-{time.year} {time.hour}:
         {time.minute} <br />
         Creado por{" "}
-        <a className="link" href="https://www.yachaydata.cl/">
+        <a
+          className="link"
+          href="https://www.yachaydata.cl/"
+          target="_blank"
+          rel="noreferrer"
+        >
           Yachay Data
         </a>{" "}
         a partir de los datos del <br />
         Ministerio de Salud disponibilizados por la iniciativa
         <br />
-        <a className="link" href="https://github.com/MinCiencia/Datos-COVID19">
+        <a
+          className="link"
+          href="https://github.com/MinCiencia/Datos-COVID19"
+          target="_blank"
+          rel="noreferrer"
+        >
           Datos-COVID19
         </a>{" "}
         del Ministerio de Ciencia.
