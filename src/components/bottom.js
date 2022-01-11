@@ -31,8 +31,7 @@ const Bottom = (props) => {
         className="sub-text"
         style={{ fontSize: props.screenWidth > 600 ? 12 : 7 }}
       >
-        Última actualización: {time.day}-{time.month}-{time.year} {time.hour}:
-        {time.minute} <br />
+        Última actualización: {time.datetime} <br />
         Creado por{" "}
         <a
           className="link"
