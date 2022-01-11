@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import json
 import datetime
 import requests
@@ -69,6 +70,7 @@ preProcessor(df)
 df = df.rolling(7).mean() # Calcular media móvil 7 
 df = df.iloc[7:] # Eliminar primeras filas
 df[df < 0] = 0
+df = np.round(df,decimals = 0)
 
 # Regiones
 data = {f"{region}": {
@@ -93,6 +95,7 @@ with open(f"../src/data/casos_diarios_nacional.json", "w") as file:
 df_comunas = df_comunas.diff() # Calcular la diferencia
 df_comunas[df_comunas < 0] = 0
 df_comunas = df_comunas.rolling(7).mean() # Calcular media móvil 7 
+df_comunas = np.round(df_comunas,decimals = 0) 
 df_comunas = df_comunas.iloc[7:] # Eliminar primeras filas
 data = {f"{comuna}": {
         "name": comunas[comuna], 
@@ -158,7 +161,7 @@ df = pd.read_csv("pacientes_UCI.csv")
 df = df.rename(columns={"Region":"Fecha"})
 df = df.set_index("Fecha")
 df = df.iloc[2:]
-df['Total'] = df.sum(axis=1)
+df["Total"] = df.sum(axis=1)
 
 # Regiones
 data = {f"{region}": {
@@ -180,53 +183,63 @@ with open(f"../src/data/UCI_nacional.json", "w") as file:
     json.dump(data, file, indent=4)
 
 ###################### Tasa de incidencia (media 7 días) ######################
-# Nacional
-url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto69/carga.nacional.ajustada.csv"
+url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto18/TasaDeIncidencia_T.csv"
 res = requests.get(url, allow_redirects=True)
-with open("incidencia_nacional.csv","wb") as file:
+with open("incidencia.csv","wb") as file:
     file.write(res.content)
-df = pd.read_csv("incidencia_nacional.csv", usecols=["fecha", "carga.estimada"])
-df = df.set_index("fecha")
+df = pd.read_csv("incidencia.csv")
+df = df[df.columns[df.isin(["Total", "Comuna"]).any()]]
+df = df.rename(columns= lambda x : str(x)[:-2].replace(".", ""))
+df = df.iloc[4:] 
+df = df.rename(columns={
+    "Regi":"Fecha", 
+    "Del Libertador General Bernardo O’Higgins": "O’Higgins",
+    "Tarapaca": "Tarapacá",
+    "Valparaiso": "Valparaíso",
+    "Nuble": "Ñuble",
+    "Biobio": "Biobío",
+    "La Araucania":"Araucanía",
+    "Los Rios": "Los Ríos",
+    "Aysen": "Aysén",
+    "Magallanes y la Antartica": "Magallanes"
+})
+df = df.set_index("Fecha")
+df = df.astype(float)
+df["Total"] = df.sum(axis=1)
+df = df.diff() # Calcular la diferencia
 df = df.rolling(7).mean() # Calcular media móvil 7 
-df = df.iloc[6:] # Eliminar primeras filas
-data = {"TOTAL": {
-        "name": "Total Nacional", 
-        "data": json.loads(df["carga.estimada"].to_json(orient = "index", indent = 1))
-        }
-}
-with open(f"../src/data/incidencia_nacional.json", "w") as file:
-    json.dump(data, file, indent=4)
+df = df.iloc[7:] # Eliminar primeras filas
+df[df < 0] = 0
+df = np.round(df,decimals = 2) 
 
 # Regiones
-url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto69/carga.regional.ajustada.csv"
-res = requests.get(url, allow_redirects=True)
-with open("incidencia_region.csv","wb") as file:
-    file.write(res.content)
-df = pd.read_csv("incidencia_region.csv", usecols=["Region", "fecha","carga.estimada"])
-df = df.set_index(["Region", "fecha"]).unstack(level=0)
-df = df.rolling(7).mean() # Calcular media móvil 7 
-df = df.iloc[6:] # Eliminar primeras filas
 data = {f"{region}": {
         "name": regiones[region], 
-        "data": json.loads(df[("carga.estimada", regiones[region])].to_json(orient = "index", indent = 1))
+        "data": json.loads(df[regiones[region]].to_json(orient = "index", indent = 1))
         }
     for region in regiones
 }
 with open(f"../src/data/incidencia_region.json", "w") as file:
     json.dump(data, file, indent=4)
 
+# Nacional
+data = {"TOTAL": {
+        "name": "Total Nacional", 
+        "data": json.loads(df["Total"].to_json(orient = "index", indent = 1))
+        }
+}
+with open(f"../src/data/incidencia_nacional.json", "w") as file:
+    json.dump(data, file, indent=4)
+
 # Comunas
-url = "https://raw.githubusercontent.com/MinCiencia/Datos-COVID19/master/output/producto18/TasaDeIncidencia_T.csv"
-res = requests.get(url, allow_redirects=True)
-with open("incidencia_comuna.csv","wb") as file:
-    file.write(res.content)
-df = pd.read_csv("incidencia_comuna.csv", header=2, usecols=columns_comunas)
+df = pd.read_csv("incidencia.csv", header=2, usecols=columns_comunas)
 df = df.rename(columns={"Comuna":"Fecha"})
 df = df.set_index("Fecha")
 df = df.diff() # Calcular la diferencia
 df = df.rolling(7).mean() # Calcular media móvil 7 
 df = df.iloc[7:] # Eliminar primeras filas
 df[df < 0] = 0
+df = np.round(df,decimals = 2) 
 
 data = {f"{comuna}": {
         "name": comunas[comuna], 
