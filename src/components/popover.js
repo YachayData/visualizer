@@ -30,7 +30,7 @@ const PopoverShare = (props) => (
       <h3>¡Comparte la visualización!</h3>
       {props.copyStatus ? <p className="copied">Copiado</p> : <div />}
       <CopyToClipboard
-        text={"https://www.yachaydata.cl/visualizer/"}
+        text={"https://www.yachaydata.cl/visualizador/"}
         onCopy={props.copyCode}
       >
         <Button variant="text" style={{ color: "gray", fontFamily: "Saira" }}>
