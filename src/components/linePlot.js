@@ -13,12 +13,12 @@ const MyLine = ({ data, screenWidth }) => {
     <Line
       data={data}
       height={screenWidth > 600 ? 300 + 20 * dataLength : 250}
-      width={screenWidth > 600 ? 600 : 450}
+      width={screenWidth > 600 ? 550 : 450}
       margin={{
         top: 15 * dataLength + 10,
-        right: 75,
+        right: 40,
         bottom: screenWidth > 600 ? 20 : 45,
-        left: 115,
+        left: 70,
       }}
       xScale={{
         type: "time",

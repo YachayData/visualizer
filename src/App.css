@@ -1,7 +1,9 @@
 .App {
   text-align: center;
-  background-color: #ffffff;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .app-container {
@@ -42,7 +44,7 @@ h3 {
 
 .pop-up {
   height: auto;
-  width: 50vw;
+  width: 40vw;
   justify-content: space-around;
   align-content: center;
   text-align: center;
@@ -82,4 +84,24 @@ h3 {
   color: #000000;
   font-size: 3;
   font-family: "Saira", sans-serif;
+}
+
+.export {
+  background-color: white;
+  width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@font-face {
+  font-family: "Saira";
+  src: url("./assets/fonts/Saira/Saira-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Saira";
+  font-weight: bold;
+  src: url("./assets/fonts/Saira/Saira-Bold.ttf") format("truetype");
 }

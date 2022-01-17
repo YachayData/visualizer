@@ -3,18 +3,22 @@ import time from "../data/ultima_actualizacion.json";
 import "../App.css";
 import IconButton from "@mui/material/IconButton";
 import ShareRoundedIcon from "@mui/icons-material/ShareRounded";
-import Popover from "./popover";
+import GetAppIcon from "@mui/icons-material/GetApp";
+import PopoverShare from "./popoverShare";
+import PopoverExport from "./popoverExport";
 
 const Bottom = (props) => {
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorElShare, setAnchorElShare] = useState(null);
+  const [anchorElExport, setAnchorElExport] = useState(null);
   const [copyStatus, setCopyStatus] = useState(false);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  // Share
+  const handleClickShare = (event) => {
+    setAnchorElShare(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseShare = () => {
+    setAnchorElShare(null);
   };
 
   const copyCode = () => {
@@ -22,8 +26,20 @@ const Bottom = (props) => {
     setTimeout(() => setCopyStatus(false), 2000);
   };
 
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const openShare = Boolean(anchorElShare);
+  const idShare = open ? "simple-popover" : undefined;
+
+  // Export
+  const handleClickExport = (event) => {
+    setAnchorElExport(event.currentTarget);
+  };
+
+  const handleCloseExport = () => {
+    setAnchorElExport(null);
+  };
+
+  const openExport = Boolean(anchorElExport);
+  const idExport = open ? "simple-popover" : undefined;
 
   return (
     <div>
@@ -57,19 +73,35 @@ const Bottom = (props) => {
       <div className="share-button">
         <IconButton
           aria-label="share"
-          aria-describedby={id}
+          aria-describedby={idShare}
           variant="contained"
-          onClick={handleClick}
+          onClick={handleClickShare}
         >
           <ShareRoundedIcon />
         </IconButton>
+        <IconButton
+          aria-label="export"
+          aria-describedby={idExport}
+          variant="contained"
+          onClick={handleClickExport}
+        >
+          <GetAppIcon />
+        </IconButton>
       </div>
-      <Popover
-        id={id}
-        open={open}
+      <PopoverShare
+        id={idShare}
+        open={openShare}
         copyCode={copyCode}
-        handleClose={handleClose}
+        handleClose={handleCloseShare}
         copyStatus={copyStatus}
+      />
+      <PopoverExport
+        id={idExport}
+        open={openExport}
+        handleClose={handleCloseExport}
+        exportPNGStory={props.exportPNGStory}
+        exportPNGPost={props.exportPNGPost}
+        exportPDF={props.exportPDF}
       />
     </div>
   );
