@@ -21,7 +21,9 @@ jobs:
         run: |
           cd getData
           pip install -r requirements.txt  
-          python3 getData.py
+          pwd
+          python getData.py
+          
       - name: Commit data files
         run: |
           pwd
@@ -37,4 +39,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
-          force: true  
+          force: true 

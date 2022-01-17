@@ -6,6 +6,7 @@ import requests
 import info
 import math
 import statistics
+import pytz
 
 regiones = info.regiones
 comunas = info.comunas
@@ -249,15 +250,13 @@ data = {f"{comuna}": {
 }
 with open(f"../src/data/incidencia_comuna.json", "w") as file:
     json.dump(data, file, indent=4)
-
+    
 # Última actualización
-current_time = datetime.datetime.now()
+country_time_zone = pytz.timezone("Chile/Continental")
+country_time = datetime.datetime.now(country_time_zone)
+string_date = country_time.strftime("%d-%m-%y %H:%M")
 dataTime = {
-    "year": current_time.year,
-    "month": current_time.month,
-    "day": current_time.day,
-    "hour": current_time.hour,
-    "minute": current_time.minute
+    "datetime": string_date
 } 
 with open(f"../src/data/ultima_actualizacion.json", "w") as file:
     json.dump(dataTime, file, indent=4)
