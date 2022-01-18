@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import ImageIcon from "@mui/icons-material/Image";
 import PdfIcon from "@mui/icons-material/PictureAsPdf";
 import "../App.css";
+import Exportable from "./exportable";
 
 const PopoverShare = (props) => (
   <Popover
@@ -29,6 +30,13 @@ const PopoverShare = (props) => (
         </IconButton>
       </div>
       <h3>Exportar visualización</h3>
+      <Exportable
+        data={props.data}
+        referencePNG={props.referencePNG}
+        referencePDF={props.referencePDF}
+        dataType={props.dataType}
+        screenWidth={props.screenWidth}
+      />
       <Button
         variant="text"
         onClick={props.exportPNGPost}
@@ -52,7 +60,6 @@ const PopoverShare = (props) => (
       >
         <PdfIcon size={17} /> Exportar PDF
       </Button>
-      <br />
       <br />
     </div>
   </Popover>

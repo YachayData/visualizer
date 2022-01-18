@@ -42,9 +42,13 @@ h3 {
   font-size: 95%;
 }
 
+h4 {
+  font-family: "Montserrat", sans-serif;
+}
+
 .pop-up {
   height: auto;
-  width: 40vw;
+  width: 601px;
   justify-content: space-around;
   align-content: center;
   text-align: center;
@@ -53,7 +57,7 @@ h3 {
 @media (max-width: 600px) {
   .pop-up {
     height: auto;
-    width: 80vw;
+    width: 92vw;
     justify-content: space-around;
     align-content: center;
     text-align: center;
@@ -88,11 +92,18 @@ h3 {
 
 .export {
   background-color: white;
-  width: 520px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 450px;
+  justify-content: space-around;
+  display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .export {
+    background-color: white;
+    width: 350px;
+    justify-content: space-around;
+    display: inline-block;
+  }
 }
 
 @font-face {
@@ -104,4 +115,16 @@ h3 {
   font-family: "Saira";
   font-weight: bold;
   src: url("./assets/fonts/Saira/Saira-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./assets/fonts/Montserrat/Montserrat-Regular.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-weight: bold;
+  src: url("./assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
 }

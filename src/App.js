@@ -38,6 +38,7 @@ function App() {
   };
 
   const exportComponentAsPNGStory = () => {
+    console.log(pngExportComponent.current);
     toPng(pngExportComponent.current, {
       cacheBust: true,
       canvasWidth: 1080,
@@ -51,7 +52,7 @@ function App() {
     });
   };
 
-  const exportComponentAsPNGPost = (shape) => {
+  const exportComponentAsPNGPost = () => {
     toPng(pngExportComponent.current, {
       cacheBust: true,
       canvasWidth: 1080,
@@ -73,36 +74,36 @@ function App() {
     <div className="App">
       <Fragment>
         <Container className="app-container">
-          <Row style={{ flex: 0.5, display: "flex" }}>
+          <Row style={{ flex: 1, display: "flex" }}>
             <Col style={{ flex: 1 }}>
-              <PDFExport
-                ref={pdfExportComponent}
-                paperSize="auto"
-                margin={30}
-                fileName={"visualizador_covid"}
-                author="Yachay"
-              >
-                <div className="export" ref={pngExportComponent}>
-                  <h2>Visualizador datos COVID-19</h2>
-                  <PlotOptions
-                    dataType={dataType}
-                    setDataType={(e) => setDataType(e)}
-                    dataGranularity={dataGranularity}
-                    setDataGranularity={(e) => setDataGranularity(e)}
-                    currentRegion={currentRegion}
-                    setCurrentRegion={(e) => setCurrentRegion(e)}
-                    currentComuna={currentComuna}
-                    setCurrentComuna={(e) => setCurrentComuna(e)}
-                    screenWidth={width}
-                  />
-                  <LinePlot data={data} screenWidth={width} />
-                </div>
-              </PDFExport>
+              <h2>Visualizador datos COVID-19</h2>
+              <PlotOptions
+                dataType={dataType}
+                setDataType={(e) => setDataType(e)}
+                dataGranularity={dataGranularity}
+                setDataGranularity={(e) => setDataGranularity(e)}
+                currentRegion={currentRegion}
+                setCurrentRegion={(e) => setCurrentRegion(e)}
+                currentComuna={currentComuna}
+                setCurrentComuna={(e) => setCurrentComuna(e)}
+                screenWidth={width}
+              />
+              <LinePlot
+                data={data}
+                screenWidth={width}
+                isInteractive={true}
+                fontFamily={"Saira"}
+                prev={false}
+              />
               <Bottom
                 screenWidth={width}
                 exportPNGStory={exportComponentAsPNGStory}
                 exportPNGPost={exportComponentAsPNGPost}
                 exportPDF={exportComponentAsPDF}
+                referencePNG={pngExportComponent}
+                referencePDF={pdfExportComponent}
+                data={data}
+                dataType={dataType}
               />
             </Col>
           </Row>

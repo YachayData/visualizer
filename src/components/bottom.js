@@ -88,6 +88,7 @@ const Bottom = (props) => {
           <GetAppIcon />
         </IconButton>
       </div>
+      <br />
       <PopoverShare
         id={idShare}
         open={openShare}
@@ -102,6 +103,11 @@ const Bottom = (props) => {
         exportPNGStory={props.exportPNGStory}
         exportPNGPost={props.exportPNGPost}
         exportPDF={props.exportPDF}
+        referencePNG={props.referencePNG}
+        referencePDF={props.referencePDF}
+        data={props.data}
+        dataType={props.dataType}
+        screenWidth={props.screenWidth}
       />
     </div>
   );
