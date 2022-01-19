@@ -17,6 +17,8 @@
   box-shadow: 1.5px 1.5px 3px #ccc;
   font-family: "Saira", sans-serif;
   border-radius: 0.1cm;
+  position: relative;
+  left: -10px;
 }
 
 .sub-text {
