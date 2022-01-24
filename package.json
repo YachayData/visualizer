@@ -19,6 +19,7 @@
     "@nivo/stream": "^0.75.0",
     "@nivo/swarmplot": "^0.75.0",
     "@nivo/treemap": "^0.75.0",
+    "@progress/kendo-drawing": "^1.16.1",
     "@progress/kendo-react-pdf": "^4.14.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
