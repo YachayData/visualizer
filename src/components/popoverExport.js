@@ -8,11 +8,10 @@ import PdfIcon from "@mui/icons-material/PictureAsPdf";
 import "../App.css";
 import Exportable from "./exportable";
 
-const PopoverShare = (props) => (
+const PopoverExport = (props) => (
   <Popover
     id={props.id}
     open={props.open}
-    anchorEl={props.anchorEl}
     onClose={props.handleClose}
     anchorOrigin={{
       vertical: "bottom",
@@ -65,4 +64,4 @@ const PopoverShare = (props) => (
   </Popover>
 );
 
-export default PopoverShare;
+export default PopoverExport;
