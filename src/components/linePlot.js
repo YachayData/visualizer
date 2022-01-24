@@ -7,18 +7,18 @@ const integerFormat = (e) => {
   return num;
 };
 
-const MyLine = ({ data, screenWidth }) => {
+const MyLine = ({ data, screenWidth, isInteractive, fontFamily, prev }) => {
   const dataLength = data.length;
   return (
     <Line
       data={data}
       height={screenWidth > 600 ? 300 + 20 * dataLength : 250}
-      width={screenWidth > 600 ? 600 : 450}
+      width={screenWidth > 600 ? 550 : 450}
       margin={{
         top: 15 * dataLength + 10,
-        right: 75,
+        right: prev ? 115 : screenWidth > 600 ? 50 : 90,
         bottom: screenWidth > 600 ? 20 : 45,
-        left: 115,
+        left: prev ? 45 : screenWidth > 600 ? 60 : 110,
       }}
       xScale={{
         type: "time",
@@ -67,7 +67,7 @@ const MyLine = ({ data, screenWidth }) => {
       pointLabelYOffset={0}
       useMesh={true}
       theme={{
-        fontFamily: "Saira",
+        fontFamily: fontFamily,
       }}
       curve={"monotoneX"}
       tooltip={(d) => {
@@ -97,6 +97,7 @@ const MyLine = ({ data, screenWidth }) => {
           symbolBorderColor: "rgba(0, 0, 0, .5)",
         },
       ]}
+      isInteractive={isInteractive}
     />
   );
 };
