@@ -6,10 +6,15 @@ import { PDFExport } from "@progress/kendo-react-pdf";
 const Exportable = (props) => (
   <PDFExport
     ref={props.referencePDF}
-    paperSize="auto"
-    margin={30}
-    fileName={"visualizador_covid"}
+    paperSize="Letter"
+    margin={10}
+    fileName={"visualizador_covid.pdf"}
     author="Yachay"
+    scale={1}
+    title=""
+    subject=""
+    keywords=""
+    forcePageBreak=".chapter"
   >
     <div className="export" ref={props.referencePNG}>
       <h4>{dataTypes[props.dataType]}</h4>
