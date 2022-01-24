@@ -1,5 +1,4 @@
 import Popover from "@mui/material/Popover";
-import { BsLink45Deg, BsCodeSlash } from "react-icons/bs";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
