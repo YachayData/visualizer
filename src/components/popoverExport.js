@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import ImageIcon from "@mui/icons-material/Image";
 import PdfIcon from "@mui/icons-material/PictureAsPdf";
+import PrintIcon from "@mui/icons-material/Print";
 import "../App.css";
 import Exportable from "./exportable";
 
@@ -11,6 +12,7 @@ const PopoverExport = (props) => (
   <Popover
     id={props.id}
     open={props.open}
+    anchorEl={props.anchorEl}
     onClose={props.handleClose}
     anchorOrigin={{
       vertical: "bottom",
@@ -59,6 +61,13 @@ const PopoverExport = (props) => (
         <PdfIcon size={17} /> Exportar PDF
       </Button>
       <br />
+      <Button
+        variant="text"
+        onClick={props.handlePrint}
+        style={{ color: "gray", fontFamily: "Saira" }}
+      >
+        <PrintIcon size={17} /> Imprimir
+      </Button>
     </div>
   </Popover>
 );
