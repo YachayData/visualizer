@@ -6,7 +6,7 @@ import { generateLinePlotData } from "./utils/plotData";
 import PlotOptions from "./components/plotOptions";
 import Bottom from "./components/bottom";
 import { toPng } from "html-to-image";
-import { PDFExport } from "@progress/kendo-react-pdf";
+import { useReactToPrint } from "react-to-print";
 
 function App() {
   const [width, setWindowWidth] = useState(0);
@@ -38,7 +38,6 @@ function App() {
   };
 
   const exportComponentAsPNGStory = () => {
-    console.log(pngExportComponent.current);
     toPng(pngExportComponent.current, {
       cacheBust: true,
       canvasWidth: 1080,
@@ -69,6 +68,11 @@ function App() {
   const exportComponentAsPDF = (e) => {
     pdfExportComponent.current.save();
   };
+
+  const handlePrint = useReactToPrint({
+    content: () => pngExportComponent.current,
+    documentTitle: "visualizador_covid",
+  });
 
   return (
     <div className="App">
@@ -104,6 +108,7 @@ function App() {
                 referencePDF={pdfExportComponent}
                 data={data}
                 dataType={dataType}
+                handlePrint={handlePrint}
               />
             </Col>
           </Row>
