@@ -95,6 +95,7 @@ const Bottom = (props) => {
         copyCode={copyCode}
         handleClose={handleCloseShare}
         copyStatus={copyStatus}
+        anchorEl={anchorElShare}
       />
       <PopoverExport
         id={idExport}
@@ -108,6 +109,8 @@ const Bottom = (props) => {
         data={props.data}
         dataType={props.dataType}
         screenWidth={props.screenWidth}
+        anchorEl={anchorElExport}
+        handlePrint={props.handlePrint}
       />
     </div>
   );

@@ -98,6 +98,7 @@ h4 {
   width: 450px;
   justify-content: space-around;
   display: inline-block;
+  text-align: center;
 }
 
 @media (max-width: 600px) {
@@ -106,6 +107,7 @@ h4 {
     width: 350px;
     justify-content: space-around;
     display: inline-block;
+    text-align: center;
   }
 }
 
@@ -130,4 +132,14 @@ h4 {
   font-family: "Montserrat";
   font-weight: bold;
   src: url("./assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+  body {
+    margin-left: 5cm;
+    margin-top: 2cm;
+  }
 }
