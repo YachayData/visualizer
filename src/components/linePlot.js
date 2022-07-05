@@ -22,7 +22,7 @@ const MyLine = ({ data, screenWidth, isInteractive, fontFamily, prev }) => {
       }}
       xScale={{
         type: "time",
-        format: "%d-%m-%Y",
+        format: "%d-%m-%y",
         precision: "day",
         useUTC: false,
       }}
@@ -33,12 +33,12 @@ const MyLine = ({ data, screenWidth, isInteractive, fontFamily, prev }) => {
       }}
       colors={{ scheme: "spectral" }}
       yFormat={integerFormat}
-      xFormat={"time:%d-%m-%Y"}
+      xFormat={"time:%d-%m-%y"}
       axisTop={null}
       axisRight={null}
       axisBottom={{
         orient: "bottom",
-        format: "%m/%Y",
+        format: "%m/%y",
         tickSize: 3,
         tickPadding: 4,
         tickValues: "every 3 months",
